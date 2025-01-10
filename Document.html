@@ -1,42 +1,79 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<!-- saved from url=(0066)https://class.damiaoedu.com:44313/codes/css-selector-practise.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <meta charset="utf-8">
+    
     <title>Document</title>
 
     <style>
       /* 只能在这个style标签里写css，不能改变html结构 */
-      #a0, #a1 {
+      body > :first-child {
         color: red;
       }
-      #a2 {
+      p.a[tabindex="1"]:hover {
+        color: red;
+      }
+      p.a[tabindex="1"]:active {
         color: green;
       }
-      #a3 {
+      p.a[tabindex="1"]:focus {
         color: blue;
       }
-      .a:hover {
-    color: red;
-  }
-  .a:active {
-    color: green;
-  }
-  .a:focus {
-    color: blue;
-  }
+      p.a.c > span:first-child {
+        color: red;
+      }
+      p.a.c > span:first-child > span:first-child {
+        color: green;
+      }
+      p.a.c > span:first-child > span:nth-child(2) {
+        color: blue;
+      }
+      div a:visited {
+        color: orange;
+      }
+      div a:link {
+        color: pink;
+      }
+      div a[href^="mailto"] {
+        color: blue;
+      }
+      div a[href^="tel"] {
+        color: yellow;
+      }
+      div a[href$=".pdf" i] {
+        font-size: 30px;
+      }
+      div.a > ul > li:nth-child(n+4):nth-child(-n+7) {
+        color: red;
+      }
+      div.b > ul > li:nth-child(-n+25) {
+        color: red;
+      }
+div.b > ul > li:nth-child(n+65) {
+        color: green;
+      }
+    div.b > ul > li:nth-child(n+35):nth-child(-n+50) {
+        color: blue;
+      }
+      div.prime > ul > li:nth-child(2n+4),
+      div.prime > ul > li:nth-child(3n+6) ,
+      div.prime > ul > li:nth-child(5n+10) ,
+    div.prime > ul > li:nth-child(7n+14) ,
+    div.prime > ul > li:nth-child(11n+22) {
+        color: green;
+      }
     </style>
   </head>
   <body>
-    <p id="a0">红色</p>
+    <p>红色</p>
 
     <p class="a" tabindex="1">鼠标悬浮时为红色，按下去时为绿色，获得焦点时为蓝色</p>
 
     <p class="a c">
-      <span id="a1">红色</span>
-        <span id="a2">绿色</span>
-        <span id="a3">蓝色</span>
+      <span>
+        红色
+        <span>绿色</span>
+        <span>蓝色</span>
       </span>
     </p>
 
@@ -52,13 +89,13 @@
       <a href="https://www.mi.com/">mi</a>
       <a href="https://www.jd.com/">jd</a>
       <a href="https://www.lksdjfwief.com/">你肯定没访问过我</a>
-      <a href="mailto.html">这不是邮件链接</a>
-      <a href="MAILTO:a@b.com">给我发邮件</a>
+      <a href="https://class.damiaoedu.com:44313/codes/mailto.html">这不是邮件链接</a>
+      <a href="mailto:a@b.com">给我发邮件</a>
       <a href="mailto:a@b.com">给我发邮件</a>
       <a href="tel:12345678">给我打电话</a>
       <a href="tel:12345678">给我打电话</a>
-      <a href="aaa.pdf">下载pdf</a>
-      <a href="aaa.PDF">下载pdf</a>
+      <a href="https://class.damiaoedu.com:44313/codes/aaa.pdf">下载pdf</a>
+      <a href="https://class.damiaoedu.com:44313/codes/aaa.PDF">下载pdf</a>
     </div>
 
     <div class="a">
@@ -294,5 +331,6 @@
         <li>100</li>
       </ul>
     </div>
-  </body>
-</html>
+  
+
+</body></html>
