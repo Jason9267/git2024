@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>双向居中方案</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    div {
+        padding: 0px;
+        margin:auto;
+        width: 100px;
+        height:100px;
+        border: 1px solid red;
+    }
+    /* 行内元素使用行内块或块,设置宽高才生效 */
+    span {
+        display:inline-block;
+        width: 50px;
+        height: 50px;
+        border: 1px solid blue;
+        font-size: 10px;
+    }
+    </style>
+</head>
+<body>
+    <!-- 使用绝对定位 + inset-0 + m-auto 居中逻辑：
+     1. 父元素相对定位，提供参考系
+     2. 子元素绝对定位并 inset-0，撑满父元素
+     3. margin:auto 让子元素在父元素中水平+垂直居中
+     4. 子元素必须定宽高，且比父元素小，否则无法精确居中 -->
+    <div class="relative">1<span class="absolute m-auto inset-0">1 Loremsjshjs o 定位方法:</span></div>
+    <!-- 使用绝对定位 + top-1/2 left-1/2 + -translate-x-1/2 -translate-y-1/2 居中逻辑：
+     1. 父元素相对定位，提供参考系
+     2. top-1/2 left-1/2 将子元素左上角移动到父元素中心
+     3. -translate-x-1/2 -translate-y-1/2 将自身中心对齐到左上角位置
+     4. 子元素可不定宽高，居中效果仍然准确 -->
+    <div class="relative">2<span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">2 Loremsjshjs o</span></div>
+    <!-- 方法一：Flex 居中，子元素可比父元素大
+     逻辑：
+     1. 父元素使用 flex，justify-center 水平居中，items-center 垂直居中
+     2. Flex 会以子元素整体内容为参考进行居中，即使子元素宽高超过父元素也能居中
+     3. 父元素内只能包含一个子元素或子元素整体，否则视觉中心会偏移 -->
+    <div class="flex justify-center items-center"><span class="">3 Loremsjshjs o</span></div>
+    <!-- 方法二：使用 margin:auto 居中，子元素必须比父元素小
+     逻辑：
+     1. 子元素脱离文档流后，通过 margin:auto 在父元素内水平/垂直居中
+     2. 父元素尺寸必须大于子元素，否则 margin:auto 无法生效
+     3. 父元素内部不能放其他内容，否则方框不再居中 -->
+    <div class="flex justify-center"><span class="m-auto">3 Loremsjshjs o</span></div>
+    <!-- 同flex -->
+    <div class="grid place-items-center"><span class="">4 Loremsjshjs o</span></div>
+    <div class="grid"><span class="m-auto">4 Loremsjshjs o</span></div>
+    <!-- 表格单元格居中 常规流(子元素不能放东西)，子比父小-->
+    <div class="table"><span class="table-cell align-middle text-center"><span class="">5</span></span></div>
+    <div class="table-cell align-middle text-center"><span class="m-auto block">5</span></div>
+    <div class="table-cell align-middle text-center"><span class="m-auto">5</span></div>
+    <!-- 
+    行高居中法：子比父小
+    1. 父元素：block + 高行高 + text-center → 水平居中，形成参考高度
+    2. 子元素：inline + align-middle → 基线对齐父元素中线，实现垂直居中
+    -->
+    <div class="block leading-[100px] text-0px text-center"><span class="text-10px leading-normal align-middle">6</span></div>
+</body>
+</html>
