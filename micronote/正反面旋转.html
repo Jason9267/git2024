@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>example</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    section {
+        width: 200px;
+        height: 150px;
+        border: 2px solid blue;
+        position: relative;
+        transition: 1s;
+        transform-style: preserve-3d;
+    }
+    section:hover {
+        transform: rotateY(180deg);
+    }
+    div {
+		width: 100px;
+		height: 100px;
+		border: 2px solid red;
+        position: absolute;
+        backface-visibility: hidden;
+
+	}
+    div:nth-child(2) {
+        transform: rotateY(180deg) translateX(-100px);
+    }
+</style>
+</head>
+<body>
+    <section>
+    <div>
+		Lorem ipsum dolor sit amet consect
+	</div>	
+    <div>
+        0000晒制
+    </div>
+    </section>
+</body>
+</html>
