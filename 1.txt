@@ -10,3 +10,5 @@
 33333333333333
 会冻死
 44
+	<script src="https://cdn.tailwindcss.com"></script>
+
