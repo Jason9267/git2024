@@ -11,7 +11,7 @@
 </script>
 
 <script>
-		var s = function(n) {
+		var seven = function(n) {
 		if (n % 7 == 0) return false;
 		if (n % 10 == 7) return false;
 		if (Math.floor(n / 10) % 10 == 7) return false;
@@ -19,18 +19,28 @@
 		if (Math.floor(n / 1000) % 10 == 7) return false;
 		if (Math.floor(n / 10000) % 10 == 7) return false;
 		if (Math.floor(n / 100000) % 10 == 7) return false;
+		if (Math.floor(n / 1000000) % 10 == 7) return false;
+		if (Math.floor(n / 10000000) % 10 == 7) return false;
+		if (Math.floor(n / 100000000) % 10 == 7) return false;
+		if (Math.floor(n / 1000000000) % 10 == 7) return false;
 		return true;
 	};
 </script>
 
 <script>
-	var s = function(n) {
-		if (n % 7 == 0) return false;
-		let temp = n;
-		while (temp > 0) {
-			if (temp % 10 == 7) return false;
+var seven = function(n) {
+	if (n % 7 == 0) return false;
+	let temp = n;
+	while (temp > 0) {
+		if (temp % 10 == 7) return false;
 			temp = Math.floor(temp / 10);
 		}
 		return true;
 	};
+var n = +prompt("请输入一个数");
+var sum = 0;
+for (var i = 1; i <= n; i++) {
+if (seven(i)) sum += i * i;
+}
+console.log(sum);
 </script>
