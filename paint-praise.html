@@ -661,15 +661,12 @@ for (var y = 100; y < 200; y++) {
     dot(x, y, 'red')
   }
 }
-
  //* 画两个空心的圆，圆心在画布中心：
 for(var x = -30; x <= 30; x++){
 var y= Math.sqrt(30 * 30 - x * x)
 dot(x + 220, y + 220)
 dot(x + 220, -y + 220)
 }
-
-
 for(var x = 0; x <= 80 / Math.sqrt(2); x++) {
 //八对称性，重点：x = 0和 x <= 80 / Math.sqrt(2),需要计算根号，
 var y= Math.sqrt(80 * 80 - x * x)
@@ -682,7 +679,6 @@ dot(y + 220, -x + 220,'black')
 dot(-y + 220, x + 220,'green')
 dot(-y + 220, -x + 220,'yellow')
 }
-
 function circle(cx, cy, r) {
   var x = 0
   var y = r
@@ -711,8 +707,6 @@ function circle(cx, cy, r) {
     }
   }
 circle(220, 220, 50)
-
-
 function circle(cx, cy, r) {//目前的终极版本
   var x = 0
   var y = r
@@ -782,15 +776,11 @@ function dot1(cx, cy, r) {
   }
 }
 dot1(370, 290, 70)
-
  //   * 画一个【大小位置都合适】的sin(x)的图像
-
 for (var x = 0; x < 360; x++) {
 var y = 15 * Math.sin(x / 15) + 210
 dot(x, y, 'green')
 }
-
-
  //   * 画出rgb色彩空间的某一面（尺寸要大于100x100）
 for (var x = 0; x < 255; x++) {
   for (var y = 0; y < 255; y++) {
@@ -830,7 +820,7 @@ for (var x = 0; x < 255; x++) {
  //        0.5    0.87
  //        -0.87  0.5
  //旋转
-   for (var x = 0; x < 256; x++) {
+for (var x = 0; x < 256; x++) {
   for (var y = 0; y < 256; y++) {
     var r = 0.5 * x - 0.87 * y
     var g = 0.5 * y + 0.87 * x
@@ -840,7 +830,16 @@ for (var x = 0; x < 255; x++) {
     dot(r + 300 + 1, g + 410 + 1, 'rgb(' + x + ',' + y + ',255)')
   }
 }
+for (var x = 0; x < 256; x++) {
+    for (var y = 0; y < 256; y++) {
+      var x1 = 0.5 * x - 0.87 * y
+      var y1 = 0.87 * x + 0.5 * y
+      dot(x1 + 450, y1 + 650, 'rgb(' + x + ', ' + y + ', 255)')
+    }
+  }
+
  //   * 画一个二阶贝塞尔曲线（即控制点一共三个）
+
  //   var bezierCurve = function(x1,y1,x2,y2,x3,y3) {
  //   }
 </script>
