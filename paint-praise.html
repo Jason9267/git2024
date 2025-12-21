@@ -769,7 +769,7 @@ circle(400, 290, 110)
 //   * 画一个实心的圆
 function dot1(cx, cy, r) {
   for (var y = -r; y <= r; y++) {
-    var d = Math.sqrt(r * r - y * y)
+    var d = Math.floor(Math.sqrt(r * r - y * y))
   for (var x = -d; x <= d; x++) {
     dot(cx + x, cy + y, 'green')
   }
