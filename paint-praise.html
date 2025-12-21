@@ -839,9 +839,18 @@ for (var x = 0; x < 256; x++) {
   }
 
  //   * 画一个二阶贝塞尔曲线（即控制点一共三个）
-
- //   var bezierCurve = function(x1,y1,x2,y2,x3,y3) {
- //   }
+ var bezierCurve = function(x1,y1,x2,y2,x3,y3) {
+  for (var t = 0; t <= 1; t += 0.002) {
+    var x = x1 * (1 - t) + x2 * t
+    var y = y1 * (1 - t) + y2 * t
+    var xx = x2 * (1 - t) + x3 * t
+    var yy = y2 * (1 - t) + y3 * t
+    var xxx = x * (1 - t) + xx * t
+    var yyy = y * (1 - t) + yy * t
+    dot(xxx + 300, yyy + 200, 'red')
+  }
+}
+bezierCurve(200, 400, 430, 150, 450, 650)
 </script>
 
 </body><div id="immersive-translate-browser-popup" style="all: initial"><template shadowrootmode="open"><style>@charset "UTF-8";
