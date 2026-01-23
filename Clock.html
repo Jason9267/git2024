@@ -17,28 +17,33 @@
 		position: relative;
 	}
 	.circle span {
-		position: absolute;
-		top:50%;
-		left:50%;
-		transform: translate(-50%,-50%);
-		
-	}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin-top: -15px; 
+    margin-left: -15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 </style>
 </head>
 <body>
-	<div class="circle ">
-		<span>1</span>
-		<span>2</span>
-		<span>3</span>
-		<span>4</span>
-		<span>5</span>
-		<span>6</span>
-		<span>7</span>
-		<span>8</span>
-		<span>9</span>
-		<span>10</span>
-		<span>11</span>
-		<span>12</span>
-	</div>		
+	<div class="circle">
+  <span style="transform:rotate(0deg)   translateX(80px) rotate(0deg)">3</span>
+  <span style="transform:rotate(30deg)  translateX(80px) rotate(-30deg)">4</span>
+  <span style="transform:rotate(60deg)  translateX(80px) rotate(-60deg)">5</span>
+  <span style="transform:rotate(90deg)  translateX(80px) rotate(-90deg)">6</span>
+  <span style="transform:rotate(120deg) translateX(80px) rotate(-120deg)">7</span>
+  <span style="transform:rotate(150deg) translateX(80px) rotate(-150deg)">8</span>
+  <span style="transform:rotate(180deg) translateX(80px) rotate(-180deg)">9</span>
+  <span style="transform:rotate(210deg) translateX(80px) rotate(-210deg)">10</span>
+  <span style="transform:rotate(240deg) translateX(80px) rotate(-240deg)">11</span>
+  <span style="transform:rotate(270deg) translateX(80px) rotate(-270deg)">12</span>
+  <span style="transform:rotate(300deg) translateX(80px) rotate(-300deg)">1</span>
+  <span style="transform:rotate(330deg) translateX(80px) rotate(-330deg)">2</span>
+</div>	
 </body>
 </html>
