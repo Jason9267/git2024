@@ -3,20 +3,42 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width,initial-scale=1" />
-	<title>example</title>
+	<title>CClock</title>
 	<script src="https://cdn.tailwindcss.com"></script>
 	
 <style>
-	div {
-		width: 300px;
-		height: 100px;
+	.circle {
+		width: 200px;
+		height: 200px;
 		border: 2px solid red;
+		border-radius: 50%;
+		margin-top: 100px;
+		margin-left: 100px;
+		position: relative;
+	}
+	.circle span {
+		position: absolute;
+		top:50%;
+		left:50%;
+		transform: translate(-50%,-50%);
+		
 	}
 </style>
 </head>
 <body>
-	<div>
-		Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores laboriosam quos aspernatur nobis, repellat voluptatum eos vitae maiores possimus, velit illum cum explicabo maxime esse vero dolor dignissimos! Ut, aut!
+	<div class="circle ">
+		<span>1</span>
+		<span>2</span>
+		<span>3</span>
+		<span>4</span>
+		<span>5</span>
+		<span>6</span>
+		<span>7</span>
+		<span>8</span>
+		<span>9</span>
+		<span>10</span>
+		<span>11</span>
+		<span>12</span>
 	</div>		
 </body>
 </html>
