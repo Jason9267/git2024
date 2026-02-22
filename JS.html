@@ -23,8 +23,54 @@ TextCell.prototype.draw = function(width, height) {
   return result
 }
 
-let tc = new TextCell('foo\nbar')
+let tc = new TextCell('aaa\nbbb\nccc\nddd\neee')
 tc.minWidth()
 tc.minHeight()
-tc.draw(9, 9)
+tc.draw(1, 2)
+
+let table = [
+  [new TextCell('aaa\nbbb\nabab00000000000000'),new TextCell('ccc0000000000000000000\nddd'),new TextCell('eee000000000000000000\nfff')],
+  [new TextCell('ggg\nhhh\nghgh'),new TextCell('111\n222'),new TextCell('333\n444')],
+  [new TextCell('555\n666'),new TextCell('777\n888'),new TextCell('999\nfff\n9f9000000000000000000f')]
+]
+
+function rowHeights ( rows ) {
+return rows . map ( function ( row ) {
+return row . reduce ( function ( max , cell ) {
+return Math . max ( max , cell . minHeight () ) ;
+}, 0) ;
+}) ;
+}
+
+function colWidths ( rows ) {
+return rows [0]. map ( function (_ , i ) {
+return rows . reduce ( function ( max , row ) {
+return Math . max ( max , row [ i ]. minWidth () ) ;
+}, 0) ;
+}) ;
+}
+
+function drawTable ( rows ) {
+var heights = rowHeights ( rows ) ;
+var widths = colWidths ( rows ) ;
+function drawLine ( blocks , lineNo ) {
+return blocks . map ( function ( block ) {
+return block [ lineNo ];
+}) . join (" ") ;
+}
+function drawRow ( row , rowNum ) {
+var blocks = row . map ( function ( cell , colNum ) {
+return cell . draw ( widths [ colNum ] , heights [ rowNum ]) ;
+}) ;
+return blocks [0]. map ( function (_ , lineNo ) {
+return drawLine ( blocks , lineNo ) ;
+}) . join ("\n") ;
+}
+return rows.map ( drawRow ).join ("\n") ;
+}
+
+drawTable(table)
+console.log(drawTable(table))
+
+
 </script>
