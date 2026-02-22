@@ -1,0 +1,30 @@
+<script>
+function TextCell(text) {
+  this.lines = text.split('\n')
+}
+
+TextCell.prototype.minWidth = function() {
+return Math.max(...this.lines.map(it => it.length))
+}
+
+TextCell.prototype.minHeight = function() {
+return this.lines.length
+}
+
+TextCell.prototype.draw = function(width, height) {
+  let result = []
+  for (let i = 0; i < height; i++) {
+    let line = this.lines[i] || ''
+    while (line.length < width) {
+      line += ' '
+    }
+    result.push(line)
+  }
+  return result
+}
+
+let tc = new TextCell('foo\nbar')
+tc.minWidth()
+tc.minHeight()
+tc.draw(9, 9)
+</script>
