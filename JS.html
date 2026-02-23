@@ -29,9 +29,9 @@ tc.minHeight()
 tc.draw(1, 2)
 
 let table = [
-  [new TextCell('aaa\nbbb\nabab00000000000000'),new TextCell('ccc0000000000000000000\nddd'),new TextCell('eee000000000000000000\nfff')],
-  [new TextCell('ggg\nhhh\nghgh'),new TextCell('111\n222'),new TextCell('333\n444')],
-  [new TextCell('555\n666'),new TextCell('777\n888'),new TextCell('999\nfff\n9f9000000000000000000f')]
+  [new TextCell('aaa\nbbb\nabab'),new TextCell('ccc\nddd')],
+  [new TextCell('111\n222'),new TextCell('333\n444')],
+  [new TextCell('777'),new TextCell('999\nfff')]
 ]
 
 function rowHeights ( rows ) {
@@ -71,6 +71,16 @@ return rows.map ( drawRow ).join ("\n") ;
 
 drawTable(table)
 console.log(drawTable(table))
+
+var MOUNTAINS = [
+  {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
+  {name: "Everest", height: 8848, country: "Nepal"},
+  {name: "Mount Fuji", height: 3776, country: "Japan"},
+  {name: "Mont Blanc", height: 4808, country: "Italy/France"},
+  {name: "Vaalserberg", height: 323, country: "Netherlands"},
+  {name: "Denali", height: 6168, country: "United States"},
+  {name: "Popocatepetl", height: 5465, country: "Mexico"}
+];
 
 
 </script>
