@@ -70,7 +70,7 @@ return rows.map ( drawRow ).join ("\n") ;
 }
 
 drawTable(table)
-console.log(drawTable(table))
+//console.log(drawTable(table))
 
 var MOUNTAINS = [
   {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
@@ -102,13 +102,34 @@ let v3 = v1.plus(v2)
 let v4 = v2.minus(v1)
 v1.length()
 
+
 // A Complex type
 function Complex(real, imag) {
-
+  this.real = real
+  this.imag = imag
 }
 
-let c1 = new Complex(6,6)
-let c2 = new Complex(8,-8)
+Complex.prototype.plus = function(params) {
+  return new Complex(this.real + params.real , this.imag + params.imag)
+}
+
+Complex.prototype.minus = function(params) {
+  return new Complex(this.real - params.real , this.imag - params.imag)
+}
+
+Complex.prototype.multiple = function(params) {
+  return new Complex(this.real * params.real - this.imag * params.imag, this.real * params.imag + this.imag * params.real)
+}
+
+Complex.prototype.div = function(params) {
+  return new Complex((this.real * params.real + this.imag * params.imag) / (params.real * params.real + params.imag * params.imag), (this.imag * params.real - this.real * params.imag) / (params.real * params.real + params.imag * params.imag))
+}
+
+Complex.prototype.toString = function(params) {
+  return this.real + " + " + this.imag + "i "
+}
+let c1 = new Complex(1,2)
+let c2 = new Complex(2,3)
 
 
 let c3 = c1.plus(c2)
