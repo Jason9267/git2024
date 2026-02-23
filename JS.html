@@ -84,18 +84,23 @@ var MOUNTAINS = [
 
 // A vector type
 function Vector(x, y) {
-
+  this.x = x
+  this.y = y
 }
 Vector.prototype.plus = function(params) {
-
+  return new Vector(this.x + params.x , this.y + params.y)
 }
 Vector.prototype.minus = function(params) {
-
+  return new Vector(this.x - params.x , this.y - params.y)
+}
+Vector.prototype.length = function() {
+  return Math.sqrt(this.x * this.x + this.y * this.y)
 }
 let v1 = new Vector(6,6)
 let v2 = new Vector(8,-8)
 let v3 = v1.plus(v2)
 let v4 = v2.minus(v1)
+v1.length()
 
 // A Complex type
 function Complex(real, imag) {
