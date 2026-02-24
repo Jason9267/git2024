@@ -2,15 +2,12 @@
 function TextCell(text) {
   this.lines = text.split('\n')
 }
-
 TextCell.prototype.minWidth = function() {
 return Math.max(...this.lines.map(it => it.length))
 }
-
 TextCell.prototype.minHeight = function() {
 return this.lines.length
 }
-
 TextCell.prototype.draw = function(width, height) {
   let result = []
   for (let i = 0; i < height; i++) {
@@ -22,18 +19,15 @@ TextCell.prototype.draw = function(width, height) {
   }
   return result
 }
-
 let tc = new TextCell('aaa\nbbb\nccc\nddd\neee')
 tc.minWidth()
 tc.minHeight()
 tc.draw(1, 2)
-
 let table = [
   [new TextCell('aaa\nbbb\nabab'),new TextCell('ccc\nddd')],
   [new TextCell('111\n222'),new TextCell('333\n444')],
   [new TextCell('777'),new TextCell('999\nfff')]
 ]
-
 function rowHeights ( rows ) {
 return rows . map ( function ( row ) {
 return row . reduce ( function ( max , cell ) {
@@ -41,7 +35,6 @@ return Math . max ( max , cell . minHeight () ) ;
 }, 0) ;
 }) ;
 }
-
 function colWidths ( rows ) {
 return rows [0]. map ( function (_ , i ) {
 return rows . reduce ( function ( max , row ) {
@@ -49,7 +42,6 @@ return Math . max ( max , row [ i ]. minWidth () ) ;
 }, 0) ;
 }) ;
 }
-
 function drawTable ( rows ) {
 var heights = rowHeights ( rows ) ;
 var widths = colWidths ( rows ) ;
@@ -68,10 +60,8 @@ return drawLine ( blocks , lineNo ) ;
 }
 return rows.map ( drawRow ).join ("\n") ;
 }
-
 drawTable(table)
 //console.log(drawTable(table))
-
 var MOUNTAINS = [
   {name: "Kilimanjaro", height: 5895, country: "Tanzania"},
   {name: "Everest", height: 8848, country: "Nepal"},
@@ -81,7 +71,6 @@ var MOUNTAINS = [
   {name: "Denali", height: 6168, country: "United States"},
   {name: "Popocatepetl", height: 5465, country: "Mexico"}
 ];
-
 // A vector type
 function Vector(x, y) {
   this.x = x
@@ -101,41 +90,32 @@ let v2 = new Vector(8,-8)
 let v3 = v1.plus(v2)
 let v4 = v2.minus(v1)
 v1.length()
-
-
 // A Complex type
 function Complex(real, imag) {
   this.real = real
   this.imag = imag
 }
-
 Complex.prototype.plus = function(params) {
   return new Complex(this.real + params.real , this.imag + params.imag)
 }
-
 Complex.prototype.minus = function(params) {
   return new Complex(this.real - params.real , this.imag - params.imag)
 }
-
 Complex.prototype.multiple = function(params) {
   return new Complex(this.real * params.real - this.imag * params.imag, this.real * params.imag + this.imag * params.real)
 }
-
 Complex.prototype.div = function(params) {
   return new Complex((this.real * params.real + this.imag * params.imag) / (params.real * params.real + params.imag * params.imag), (this.imag * params.real - this.real * params.imag) / (params.real * params.real + params.imag * params.imag))
 }
-
 Complex.prototype.toString = function(params) {
-  return this.real + " + " + this.imag + "i "
+  return this.real + (this.imag > 0 ? " + "  : '')+ this.imag + "i "
 }
-let c1 = new Complex(1,2)
+let c1 = new Complex(1,21)
 let c2 = new Complex(2,3)
-
-
 let c3 = c1.plus(c2)
 let c4 = c2.minus(c1)
 let c5 = c1.multiple(c2)
 let c6 = c2.div(c1)
-console.log(c6.toString())
+//console.log(c4.toString())
 
 </script>
