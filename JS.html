@@ -225,34 +225,48 @@ Collection.prototype.delete = function(item) {
   let idx = this.items.indexOf(item)
   if (idx !== -1) {
     this.items.splice(idx, 1)
+    return true
   }
+  return false
 }
 //获取集合中的元素s.size,使用getter
-
+Object.defineProperty(Collection.prototype, 'size', {
+  get: function() {
+    return this.items.length
+  }
+}
+)
 //清空结合的所有元素
 Collection.prototype.clear = function() {
-
+  this.items = []
 }
 //判断集合中是否存在某元素
 Collection.prototype.has = function(item) {
-  s.has(item)
+  //return this.items.includes(item)
+  let idx = this.items.indexOf(item)
+  if (idx !== -1) {
+    return true
+  }
+  return false
 }
 //遍历集合中的元素
-Collection.prototype.forEach = function(item) {
-  
+Collection.prototype.forEach = function(callback) {
+  for (let i = 0; i < this.items.length; i++) {
+    callback(this.items[i], i)
+  }
 }
 let s = new Collection()
-s.add(1)
-s.add(1)
-s.size//1
-s.add(2)
-s.size//2
-s.has(1)//true
-s.has(3)//false
-s.delete(1)
-s.size//1
-s.delete(4)
-s.size//1
+//s.add(1)
+//s.add(1)
+//s.size//1
+//s.add(2)
+//s.size//2
+//s.has(1)//true
+//s.has(3)//false
+//s.delete(1)
+//s.size//1
+//s.delete(4)
+//s.size//1
 //表达一个映射
 function map() {
 
@@ -304,11 +318,11 @@ Stack.prototype.peek = function() {
 
 }
 //获取栈中元素的数量stack.size
-let stack = new Stack()
-stack.in(1)
-stack.in(2)
-stack.size//2
-stack.out()//2
+//let stack = new Stack()
+//stack.in(1)
+//stack.in(2)
+//stack.size//2
+//stack.out()//2
 
 //获取队列长度quene.size
 </script>
