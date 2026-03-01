@@ -118,4 +118,197 @@ let c5 = c1.multiple(c2)
 let c6 = c2.div(c1)
 //console.log(c4.toString())
 
+function Node(val) {
+  this.val = val
+  this.next = null
+}
+//表示一个单向链表
+function LinkedList() {
+  this.head = null
+  this.length = 0
+}
+//返回链表第idx个节点的值
+LinkedList.prototype.get = function(idx) {
+  if (idx < 0 || idx >= this.length) return undefined
+  let p = this.head
+  for (let i = 0; i < idx; i++) {
+    p = p.next
+  }
+  return p.val
+}
+//设置链表第idx项的值为val
+LinkedList.prototype.set = function(idx, val) {
+  if (idx < 0 || idx >= this.length) return undefined
+  let p = this.head
+  for (let i = 0; i < idx; i++) {
+    p = p.next
+  }
+  p.val = val
+  return true
+}
+//在链表末尾新增一个节点，值为val
+LinkedList.prototype.push = function(val) {
+  let node = new Node(val)
+  if (!this.head) {
+    this.head = node
+    this.length++
+    return true
+  }
+  let p = this.head
+  while (p.next) {
+    p = p.next
+  }
+  p.next = node 
+  this.length++
+  return true
+} 
+//返回链表末尾节点的值，并删除此节点
+LinkedList.prototype.pop = function() {
+  if (!this.head) {
+    return undefined
+  }
+  if (!this.head.next) {
+    let val = this.head.val
+    this.head = null
+    this.length--
+    return val
+  }
+  let p = this.head
+  while (p.next.next) {
+    p = p.next
+  }
+  let val = p.next.val
+  p.next = null
+  this.length-- 
+  return val
+}
+//在链表头部新增一个节点，值为val
+LinkedList.prototype.unshift = function(val) {
+  let node = new Node(val)
+  node.next = this.head
+  this.head = node
+  this.length++ 
+  return true
+}
+//返回链表第一个节点的值，并删除此的节点
+LinkedList.prototype.shift = function() {
+  if (!this.head) {
+    return undefined
+  }
+  let val = this.head.val
+  this.head = this.head.next
+  this.length--
+  return val
+}
+//链表转换为数组
+LinkedList.prototype.toArray = function() {
+  let res = []
+  let current = this.head
+  while (current) {
+    res.push(current.val)
+    current = current.next
+  }
+  return res
+}
+//表示一个集合
+function Collection() {
+  this.items = []
+}
+//向集合中增加元素
+Collection.prototype.add = function(item) {
+  if (!this.items.includes(item)) {
+    this.items.push(item)
+  }
+}
+//从集合中删除item元素
+Collection.prototype.delete = function(item) {
+  let idx = this.items.indexOf(item)
+  if (idx !== -1) {
+    this.items.splice(idx, 1)
+  }
+}
+//获取集合中的元素s.size,使用getter
+
+//清空结合的所有元素
+Collection.prototype.clear = function() {
+
+}
+//判断集合中是否存在某元素
+Collection.prototype.has = function(item) {
+  s.has(item)
+}
+//遍历集合中的元素
+Collection.prototype.forEach = function(item) {
+  
+}
+let s = new Collection()
+s.add(1)
+s.add(1)
+s.size//1
+s.add(2)
+s.size//2
+s.has(1)//true
+s.has(3)//false
+s.delete(1)
+s.size//1
+s.delete(4)
+s.size//1
+//表达一个映射
+function map() {
+
+}
+Map.prototype = {
+//设置映射中的key映射到val
+set: function(key, val) {
+
+},
+//获取这个映射中key所对应的val
+get: function(key) {
+
+},
+//判断这个映射中是否存在这个key的映射
+has: function(key) {
+
+},
+//清空这个映射中所有的映射对
+clear: function() {
+
+},
+//删除这个映射中的key及其映射的值
+delete: function(key) {
+
+},
+//获取这个映射中映射对的数量
+get size() {
+
+},
+//遍历这个映射中所有的映射对
+forEach() {
+
+},
+}
+//表示一个栈：后进先出
+function Stack() {
+
+}
+//向栈中增加元素
+Stack.prototype.in = function() {
+
+}
+//从栈中取出元素并删除栈顶元素
+Stack.prototype.out = function() {
+
+}
+//查看但不删除栈顶元素
+Stack.prototype.peek = function() {
+
+}
+//获取栈中元素的数量stack.size
+let stack = new Stack()
+stack.in(1)
+stack.in(2)
+stack.size//2
+stack.out()//2
+
+//获取队列长度quene.size
 </script>
