@@ -268,42 +268,48 @@ let s = new Collection()
 //s.delete(4)
 //s.size//1
 //表达一个映射
-function map() {
-
+function Map() {
+  this.items = Object.create(null)
 }
 Map.prototype = {
 //设置映射中的key映射到val
 set: function(key, val) {
-
+  this.items[key] = val
 },
 //获取这个映射中key所对应的val
 get: function(key) {
-
+  return this.items[key]
 },
 //判断这个映射中是否存在这个key的映射
 has: function(key) {
-
+  return key in this.items
 },
 //清空这个映射中所有的映射对
 clear: function() {
-
+  this.items = Object.create(null)
 },
 //删除这个映射中的key及其映射的值
 delete: function(key) {
-
+  if (this.has([key])) {
+    delete this.items[key]
+    return true
+  }
+  return false
 },
 //获取这个映射中映射对的数量
 get size() {
-
+  return Object.keys(this.items).length
 },
 //遍历这个映射中所有的映射对
 forEach() {
-
+  Object.keys(this.items).forEach(key => {
+    callback(this.items[key], key)
+  })
 },
 }
 //表示一个栈：后进先出
 function Stack() {
-
+  this.items = []
 }
 //向栈中增加元素
 Stack.prototype.in = function() {
