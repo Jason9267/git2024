@@ -312,18 +312,21 @@ function Stack() {
   this.items = []
 }
 //向栈中增加元素
-Stack.prototype.in = function() {
-
+Stack.prototype.in = function(val) {
+  this,items.push(val)
 }
 //从栈中取出元素并删除栈顶元素
 Stack.prototype.out = function() {
-
+  return this,items.pop()
 }
 //查看但不删除栈顶元素
 Stack.prototype.peek = function() {
-
+  return this.items[this.items.length - 1]
 }
 //获取栈中元素的数量stack.size
+Stack.prototype.size = function() {
+  return this.items.length
+}
 //let stack = new Stack()
 //stack.in(1)
 //stack.in(2)
@@ -331,4 +334,7 @@ Stack.prototype.peek = function() {
 //stack.out()//2
 
 //获取队列长度quene.size
+Quene.prototype.size = function() {
+  return this.items.length
+}
 </script>
