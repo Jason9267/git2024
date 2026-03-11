@@ -190,7 +190,7 @@ LinkedList.prototype.unshift = function(val) {
   this.head = node
   this.length++ 
   return true
-  //return this 支持链式调用
+  //return this 返回链表自己，支持链式调用l.unshift(1).unshift(2).unshift(3)
 }
 //返回链表第一个节点的值，并删除此节点
 LinkedList.prototype.shift = function() {
@@ -212,6 +212,8 @@ LinkedList.prototype.toArray = function() {
   }
   return res
 }
+//l.toArray().join('->')
+
 //表示一个集合
 function Collection() {
   this.items = []
@@ -327,7 +329,7 @@ Stack.prototype.in = function(val) {
 }
 //从栈中取出元素并删除栈顶元素
 Stack.prototype.out = function() {
-  return this,items.pop()
+  return this.items.pop()
 }
 //查看但不删除栈顶元素
 Stack.prototype.peek = function() {
@@ -345,10 +347,55 @@ Object.defineProperty(Stack.prototype, 'size', {
 //stack.in(2)
 //stack.size//2
 
-//表示一个队列
+//表示一个队列 先进先出 尾进头出 买票排队
 function Queue() {
   this.head = null
   this.tail = null
+  this.length = 0
 }
-
+//向队列中增加元素
+Queue.prototype.in = function(val) {
+  let node = new Node(val)
+  if(!this.tail) {
+    this.head = this.tail = node
+    this.length++
+    return this// 返回队列对象，方便链式调用
+  } else {
+    this.tail.next = node
+    this.tail = node
+    this.length++
+    return this
+  }
+}
+//取出队头，并删除
+Queue.prototype.out = function() {
+  if(!this.head) {
+    return undefined
+  } else if(this.tail === this.head){
+    let res = this.head.val
+    this.head = this.tail = null
+    this.length--
+    return res
+  } else {
+    let res = this.head.val
+    this.head = this.head.next
+    this.length--
+    return res
+  }
+}
+//查看队头元素
+Queue.prototype.peek = function() {
+  if(!this.head) {
+    return undefined
+  } else {
+    return this.head
+  }
+}
+//获取队列中元素的数量.size
+Object.defineProperty(Queue.prototype, 'size', {
+  get: function() {
+    return this.length
+  }
+}
+)
 </script>
