@@ -157,7 +157,6 @@ function condensedtreeToArray(root, arr = []) {
     return arr
 }
 
-
 //let c = 1;
 //
 //function describe(description, func) {
@@ -177,40 +176,14 @@ function condensedtreeToArray(root, arr = []) {
 //    describe('1.3', () => {});
 //});
 
-
-
-
-function withBoxUnlocked() {
-    let box = {
-        locked : true ,
-        unlock : function () { this . locked = false ; },
-        lock : function () { this . locked = true ; },
-        _content : [],
-        get content () {
-        if ( this . locked ) throw new Error (" Locked !");
-        return this . _content ;
-        }
-    }
-    if (box.locked !== true) {
-        let b = box._content.val
-        box.locked = false
-        return b
-    } else {
-        console.log('exception')
-        box.locked = false
-        let b = box._content.val
-        box.locked = true
-        return b
-    }
-}
-
-
+//Retry
+class MultiplicatorUnitFailure extends Error {}
 function primitiveMultiply(a, b) {
     if(Math.random() > 0.5){
         let c = a * b
         return c
     } else {
-        throw new MultiplicatorUnitFailure(failed)
+        throw new MultiplicatorUnitFailure('failed')
     }
 }
 function Multiply(a, b) {
@@ -226,9 +199,28 @@ function Multiply(a, b) {
         } 
     }
 }
-
-
-
-
-
+//The locked box
+let box = {
+    locked : true ,
+    unlock : function () { this . locked = false ; },
+    lock : function () { this . locked = true ; },
+    _content : [1,2,3],
+    get content () {
+    if ( this . locked ) throw new Error (" Locked !");
+    return this . _content ;
+    }
+}
+function withBoxUnlocked(f) {
+    box.unlock()
+    try {
+        f()
+    } finally {
+        box.lock()
+    }
+}
+withBoxUnlocked(() => {
+    console.log(box.content)
+    box._content.push(4)
+    console.log(box.content)
+})
 </script>
