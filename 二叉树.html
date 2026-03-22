@@ -1,0 +1,234 @@
+<script>
+/*function arrayToTree(array, pos = 0) {
+    let tree = new TreeNode(array[0])
+    if (array[pos] === null) {
+        return null
+    }
+    tree.left = arrayToTree(array, pos * 2 + 1)
+    tree.right = arrayToTree(array, pos * 2 + 2)
+    return tree
+}
+function treeToArray(node, idx = 0, arr = []) {
+    if (node) {
+        arr[idx] = node.val
+        treeToArray(node.left, idx * 2 + 1,arr)
+        treeToArray(node.right, idx * 2 + 2,arr)
+    }
+    return arr
+}
+//上面的写法在二叉树缺失较多时比较浪费
+class TreeNode {
+    constructor(val) {
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+}
+function condensedArrayToTree(array) {
+    if (array.length === 0) {
+        return null
+    }
+    let root = new TreeNode(array[0])
+    let nodes = [root]
+    for (let i = 1; i < array.length; i++) {
+        let curr = nodes.shift()
+        let val = array[i]
+        let node
+        if (val == null) {
+            node = null
+        } else {
+            node = new TreeNode(val)
+            nodes.push(node)
+        }
+        curr.left = node
+        i++
+        let vals = array[i]
+        if (vals == null) {
+            node = null
+        } else {
+            node = new TreeNode(vals)
+            nodes.push(node)
+        }
+        curr.right = node
+    }
+    return root
+}
+function treeToCondensedArray(node, idx = 0, arr = []) {
+    if (node) {
+        arr[idx] = node.val
+        treeToCondensedArray(node.left, idx * 2 + 1, arr)
+        treeToCondensedArray(node.right, idx * 2 + 2, arr)
+    }
+    return arr
+}
+function a() {
+    let x = 5
+    let y = b()
+    try {
+        console.log(1)
+    } catch(e) {
+        console.log(e)
+    }
+}
+function b() {
+    let x = 5
+    let y = c()
+    console.log(2)
+}
+function c() {
+    let x = 5
+    let y = d()
+    console.log(3)
+}
+function d() {
+    if (Math.random() > 0.5) {
+        throw new Error('dddddddddddd')
+    } else {
+        console.log(4)
+    }
+}*/
+function arrayToTree(arr, idx = 0) {
+    if (idx >= arr.length || arr[idx] === null) {
+        return null
+    }
+    let root = new TreeNode(arr[idx])
+    root.left = arrayToTree(arr, idx * 2 + 1)
+    root.right = arrayToTree(arr, idx * 2 + 2)
+    return root
+}
+function treeToArray(root, idx = 0, arr = []) {
+    if (!root) {
+        return arr
+    }
+    arr[idx] = root.val
+    treeToArray(root.left, idx * 2 + 1, arr)
+    treeToArray(root.right, idx * 2 + 2,arr)
+    return arr
+}
+class TreeNode {
+    constructor(val) {
+        this.val = val
+        this.left = null
+        this.right = null
+    }
+}
+function condensedArrayToTree(arr, idx = 0) {
+    if (arr.length === 0) {
+        return null
+    }
+    let root = new TreeNode(arr[0])
+    nodes = [root]
+    for (let i = 1; i < arr.length; i++) {
+        let curr = nodes.shift()
+        let val = arr[i]
+        let node
+        if (val === null) {
+            node = null
+        } else {
+            node = new TreeNode(val)
+            nodes.push(node)
+        }
+        curr.left = node
+        i++
+        let vals = arr[i]
+        if (vals === null) {
+            node = null
+        } else {
+            node = new TreeNode(vals)
+            nodes.push(node)
+        }
+        curr.right = node
+    }
+    return root
+}
+function condensedtreeToArray(root, arr = []) {
+    if(!root) {
+        return arr
+    }
+    let nodes = [root]
+    while (nodes.length > 0) {
+        let curr = nodes.shift()
+        if (curr) {
+            let val = curr.val
+            arr.push(val)
+            nodes.push(curr.left, curr.right)
+        }
+    }
+    return arr
+}
+
+
+//let c = 1;
+//
+//function describe(description, func) {
+//    console.log(' '.repeat(c - 1) + description);
+//    c++;           // 增加深度
+//    func();        // 回调
+//    c--;           // 恢复深度
+//}
+//
+//describe('1', () => {
+//    describe('1.1', () => {});
+//    describe('1.2', () => {
+//        describe('1.2.1', () => {});
+//        describe('1.2.2', () => {});
+//        describe('1.2.3', () => {});
+//    });
+//    describe('1.3', () => {});
+//});
+
+
+
+
+function withBoxUnlocked() {
+    let box = {
+        locked : true ,
+        unlock : function () { this . locked = false ; },
+        lock : function () { this . locked = true ; },
+        _content : [],
+        get content () {
+        if ( this . locked ) throw new Error (" Locked !");
+        return this . _content ;
+        }
+    }
+    if (box.locked !== true) {
+        let b = box._content.val
+        box.locked = false
+        return b
+    } else {
+        console.log('exception')
+        box.locked = false
+        let b = box._content.val
+        box.locked = true
+        return b
+    }
+}
+
+
+function primitiveMultiply(a, b) {
+    if(Math.random() > 0.5){
+        let c = a * b
+        return c
+    } else {
+        throw new MultiplicatorUnitFailure(failed)
+    }
+}
+function Multiply(a, b) {
+    for(;;) {
+        try{
+            return primitiveMultiply(a, b)
+        }catch(e){
+            if (e instanceof MultiplicatorUnitFailure) {
+                continue
+            } else {
+            throw e
+            }
+        } 
+    }
+}
+
+
+
+
+
+</script>
