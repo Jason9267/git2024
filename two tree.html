@@ -179,7 +179,7 @@ function condensedtreeToArray(root, arr = []) {
 //Retry
 class MultiplicatorUnitFailure extends Error {}
 function primitiveMultiply(a, b) {
-    if(Math.random() > 0.5){
+    if(Math.random() < 0.5){
         let c = a * b
         return c
     } else {
@@ -194,7 +194,7 @@ function Multiply(a, b) {
             if (e instanceof MultiplicatorUnitFailure) {
                 continue
             } else {
-            throw e
+                throw e
             }
         } 
     }
@@ -223,5 +223,4 @@ withBoxUnlocked(() => {
     box._content.push(4)
     console.log(box.content)
 })
-
 </script>
