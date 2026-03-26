@@ -218,9 +218,25 @@ function withBoxUnlocked(f) {
         box.lock()
     }
 }
+//写函数调用：
 withBoxUnlocked(() => {
     console.log(box.content)
     box._content.push(4)
     console.log(box.content)
 })
+//排序二叉树
+节点插入
+function inser(root, val){
+    if (!root) {
+        let node = new TreeNode(val)
+        return node
+    } else {
+        if (val < root.val) {
+            root.left = inser(root.left, val)
+        } else {
+            root.right = inser(root.right, val)
+        }
+    }
+    return root
+}
 </script>
