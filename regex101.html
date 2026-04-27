@@ -5,10 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>regex101</title>
   <style>
-    
   </style>
 </head>
 <body>
-  
+  <div>
+    <div>REGULAR EXPRESSION</div>
+    <input class="border" type="text" id="reInput">
+    <button class="border" onclick="run()">RUN</button>
+    <div>TEST STRING</div>
+    <textarea class="border" name="" id="testStringInput">
+      Lorem ipsum vero dolor sit, amet consectetur adipisicing elit. Vel vero vero blanditiis eaque ea quibusdam, eius in nisi minus porro at. Commodi vero labore vero alias fugiat vero fugit non eveniet a porro!
+      78 eggs
+      8 cows
+      1 pig
+      88888 eggs
+    </textarea>
+    <div style="border: 5px solid black;" id="result"></div>
+  </div>
+  <script>
+    function run() {
+      var reString = reInput.value
+      var re = new RegExp(reString, 'g')
+      var testString = testStringInput.value
+      var html = ''
+      var match
+      var lastLastIndex = 0
+      while(match = re.exec(testString)) {
+        html += testString.slice(lastLastIndex, match.index)
+        html += `<em>${match[0]}</em>`
+        lastLastIndex = re.lastIndex
+      }
+      html += testString.slice(lastLastIndex)
+      result.innerHTML = html
+    }
+  </script>
 </body>
 </html>
