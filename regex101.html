@@ -5,6 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>regex101</title>
   <style>
+    input, button {
+      outline: auto;
+    }
+    #result em:nth-of-type(odd) {
+      font-style: normal;
+      background-color: green;
+    }
+    #result em:nth-of-type(even) {
+      font-style: normal;
+      background-color: greenyellow;
+    }
+    #output {
+      width: 200px;
+      height: 200px;
+      position: relative;
+      > textarea, #result {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        white-space: pre-wrap;
+        overflow: auto;
+        border: 1px green solid;
+        background-color: transparent;
+        font-family: monospace;
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -12,35 +40,62 @@
     <div>REGULAR EXPRESSION</div>
     <input class="border" type="text" id="reInput">
     <button class="border" onclick="run()">RUN</button>
+    <div>FLAGS</div>
+    <label for=""><input type="checkbox" id="flag-g" checked>g</label>
+    <label for=""><input type="checkbox" id="flag-m">m</label>
+    <label for=""><input type="checkbox" id="flag-i">i</label>
+    <label for=""><input type="checkbox" id="flag-y">y</label>
+    <label for=""><input type="checkbox" id="flag-u">u</label>
+    <label for=""><input type="checkbox" id="flag-s">s</label>
+    <label for=""><input type="checkbox" id="flag-d">d</label>
+    <label for=""><input type="checkbox" id="flag-v">v</label>
     <div>TEST STRING</div>
-    <textarea class="border" name="" id="testStringInput">
-      Lorem ipsum vero dolor sit, amet consectetur adipisicing elit. Vel vero vero blanditiis eaque ea quibusdam, eius in nisi minus porro at. Commodi vero labore vero alias fugiat vero fugit non eveniet a porro!
-      78 eggs
-      8 cows
-      1 pig
-      88888 eggs
-    </textarea>
-    <div style="border: 5px solid black;" id="result"></div>
+    <div id="output">
+      <div xstyle="border: 1px solid red;" id="result"></div>
+      <textarea class="border" name="" id="testStringInput" onscroll="syncScroll()">L aaaaa Lorem ipsum vero dolor sit, amet aaaaa consectetur adipisicing elit.  Vel aaaaa vero aaaaa blanditiis eaque ea quibusdam, eius in nisi minus porro at. Commodi vero aaaaa labore vero alias fugiat vero fugit non  eveniet aaaaa porro! aaaaa ero dolor sit, amet aaaaa consectetur adipisicing elit.  Vel aaaaa vero aaaaa 78 eggs 8 cows 1 pig 88888 eggs aaaaa aaaaa</textarea>
+    </div>
   </div>
   <script>
     function run() {
+      var flags = getFlags()
       var reString = reInput.value
-      var re = new RegExp(reString, 'g')
+      try {
+        var re = new RegExp(reString, flags)
+      } catch(e) {
+        if(e instanceof SyntaxError) {
+          return
+        }
+      }
       var testString = testStringInput.value
       var html = ''
       var match
       var lastLastIndex = 0
       while(match = re.exec(testString)) {
         html += testString.slice(lastLastIndex, match.index)
+        if(match[0].length == 0) {
+          re.lastIndex++
+        }
         html += `<em>${match[0]}</em>`
         lastLastIndex = re.lastIndex
       }
       html += testString.slice(lastLastIndex)
       result.innerHTML = html
     }
-    function flag() {
-      
+    function getFlags() {
+      var flags = ['g','m','i','y','u','s','d','v']
+      return flags.filter(it => {
+        var element = document.getElementById('flag-' + it)
+        if(element.checked) {
+          return true
+        } else {
+          return false
+        }
+      }).join('')
     }
+    function syncScroll() {
+      result.scrollTop = testStringInput.scrollTop
+    }
+
   </script>
 </body>
 </html>
