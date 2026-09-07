@@ -52,16 +52,58 @@ let Promise = {
     })
   },
   //全部执行完毕即可
-  allSettled() {
-
+  allSettled(promises) {
+    return new Promise((resolve, reject) => {
+      let result = []
+      let Count = 0
+      promises.forEach((element, index) => {
+        Promise.resolve(element).then(
+          (res) => {
+            Count++
+            //resolve(res)不能在这里写，会直接确定最外层Promise的状态，并且状态不会变化，然后直接结束
+            result[index] = { status: 'fulfilled', value: res }
+            if (Count === promises.length) {
+              resolve(result)
+            }
+          },
+          (err) => {
+            Count++
+            result[index] = { status: 'rejected', reason: err }
+            if (Count === promises.length) {
+              resolve(result)
+            }
+          }
+        )
+      })
+    })
   },
-  race() {
-
+  //有一个执行完毕即可
+  race(promises) {
+    return new Promise((resolve, reject) => {
+      promises.forEach((element, index) => {
+        Promise.resolve(element).then(
+          (res) => {
+            resolve(res)
+          },
+          (err) => {
+            reject(err)
+          }
+        )
+      })
+    })
   },
-  try() {
-
+  //抛出一个函数的错误
+  try(fn) {
+    return new Promise((resolve, reject) => {
+      resolve(fn())
+    })
   },
   withResolvers() {
-
+    let resolve, reject
+    let promise = new Promise((res, rej) => {
+      resolve = res
+      reject = rej
+    })
+    return {promise, resolve, reject}
   },
 }
