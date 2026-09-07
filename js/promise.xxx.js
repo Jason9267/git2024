@@ -1,5 +1,5 @@
 let Promise = {
-  //全部成功才可以，遇见失败就直接失败
+  //全部成功才成功，遇见失败直接失败
   all(promises) {
     return new Promise((resolve, reject) => {
       let result = []
@@ -10,11 +10,13 @@ let Promise = {
             result[index] = res
             successCount++
             if (successCount === promises.length) {
+              //全部成功才成功，返回全部的成功
               resolve(result)
             }
           },
           (err) => {
             //return Promise.reject()
+            //遇见失败直接失败，返回失败的那一个
             reject(err)
           }
         )
@@ -26,9 +28,30 @@ let Promise = {
       // }
     })
   },
-  any() {
-
+  //遇见成功直接成功，全部失败才失败
+  any(promises) {
+    return new Promise((resolve, reject) => {
+      let result = []
+      let faileCount = 0
+      promises.forEach((element, index) => {
+        Promise.resolve(element).then(
+          (res) => {
+            //遇见成功直接成功，返回成功的那一个
+            resolve(res)
+          },
+          (err) => {
+            result[index] = err
+            faileCount++
+            if (faileCount === promises.length) {
+              //全部失败才失败，返回全部的失败
+              reject(result)
+            }
+          }
+        )
+      })
+    })
   },
+  //全部执行完毕即可
   allSettled() {
 
   },
