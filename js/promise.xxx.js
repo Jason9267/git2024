@@ -3,13 +3,20 @@ let Promise = {
   all(promises) {
     return new Promise((resolve, reject) => {
       let result = []
+      //防止数组中间变化
+      let len = promises.length
       let successCount = 0
+      //判空
+      if (promises.length === 0) {
+        resolve(result)
+      }
       promises.forEach((element, index) => {
+        //传入的可能不是promise，用Promise.resolve()统一为Promise
         Promise.resolve(element).then(
           (res) => {
             result[index] = res
             successCount++
-            if (successCount === promises.length) {
+            if (successCount === len) {
               //全部成功才成功，返回全部的成功
               resolve(result)
             }
@@ -104,6 +111,6 @@ let Promise = {
       resolve = res
       reject = rej
     })
-    return {promise, resolve, reject}
+    return { promise, resolve, reject }
   },
 }
