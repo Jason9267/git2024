@@ -113,4 +113,19 @@ let Promise = {
     })
     return { promise, resolve, reject }
   },
+  //收尾工作
+  finally(callback) {
+    return this.then(
+      (value) => {
+        return Promise.resolve(callback()).then(
+          () => value
+        )
+      },
+      (reason) => {
+        return Promise.resolve(callback()).then(
+          () => { throw reason }
+        )
+      }
+    )
+  },
 }
