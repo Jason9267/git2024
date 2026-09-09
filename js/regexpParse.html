@@ -5,6 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>regexpParse</title>
+  <style>
+    body {
+      background: rgb(41, 209, 120);
+    }
+  </style>
 </head>
 
 <body>
@@ -266,8 +271,8 @@
       }
     }
     let svg = document.querySelector('svg')
-    svg.setAttribute('width', '500')
-    svg.setAttribute('height', '500')
+    svg.setAttribute('width', '1000')
+    svg.setAttribute('height', '1000')
     function drawcharSinglechar(node) {
       let width = 20
       let height = 20
@@ -518,8 +523,7 @@
       for (let i = 0; i < branchess.length; i++) {
         let childc = branchess[i]
         let child = childc.ele
-        let offset = content ? gap : 0
-        child.setAttribute('transform', `translate(${offset + (W - childc.width) / 2}, ${y})`)
+        child.setAttribute('transform', `translate(${gap + (W - childc.width) / 2}, ${y})`)
         if (childc.width < W) {
           let leftline = document.createElementNS('http://www.w3.org/2000/svg', 'line')
           leftline.setAttribute('x1', gap)
@@ -591,7 +595,7 @@
       }
       return {
         ele: g,
-        width: W + gap * 0,
+        width: W + gap * 2,
         height: H
       }
     }
@@ -649,7 +653,7 @@
         height: childc.height + padding * 2
       }
     }
-    let ast = parseRegex('(a|b)')
+    let ast = parseRegex('(c|c)')
     let result = drawbranchess(ast)
     result.ele.setAttribute('transform', 'translate(50, 50)')
     svg.appendChild(result.ele)
